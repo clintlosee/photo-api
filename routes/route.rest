@@ -1,0 +1,11 @@
+GET http://localhost:8888/api/v1/portfolio
+
+###
+
+POST http://localhost:8888/api/v1newportfolio
+Content-Type: application/json
+
+{
+  "name": "Lake Mary Morning",
+  "description": "Lake Mary at sunrise.  "
+}
