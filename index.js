@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-// Make sure we are running node 7.6+
+//* Make sure we are running node 7.6+
 const [major, minor] = process.versions.node.split('.').map(parseFloat);
 if (major < 7 || (major === 7 && minor <= 5)) {
   console.log(
@@ -10,11 +10,17 @@ if (major < 7 || (major === 7 && minor <= 5)) {
   process.exit();
 }
 
+//* Mongoose/MongoDB setup
 mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DATABASE_URL_DEV, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.NODE_ENV !== 'production'
+    ? process.env.DATABASE_URL_DEV
+    : process.env.DATABASE_URL,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 const db = mongoose.connection;
 db.on('error', error => console.error(error));
 db.once('open', () => console.log('Connected to DB'));

@@ -4,6 +4,7 @@ const slug = require('slugs');
 const portfolioSchema = new mongoose.Schema({
   name: {
     type: String,
+    trim: true,
     required: true,
   },
   slug: String,
@@ -16,6 +17,15 @@ const portfolioSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
+  mainImageName: {
+    type: String,
+    require: true,
+  },
+  // creator: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'User',
+  //   required: true,
+  // },
 });
 
 portfolioSchema.pre('save', async function(next) {

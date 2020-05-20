@@ -2,10 +2,31 @@ GET http://localhost:8888/api/v1/portfolio
 
 ###
 
-POST http://localhost:8888/api/v1newportfolio
+GET http://localhost:8888/api/v1/portfolio/5ec40c74984f8886836e3222
+
+###
+
+POST http://localhost:8888/api/v1/portfolio/new
 Content-Type: application/json
 
 {
   "name": "Lake Mary Morning",
   "description": "Lake Mary at sunrise.  "
 }
+
+###
+
+DELETE http://localhost:8888/api/v1/portfolio/delete/5ec2d90635823248f74fcc92
+
+###
+
+PATCH http://localhost:8888/api/v1/portfolio/update/5ec40c74984f8886836e3222
+Content-Type: application/json
+
+{
+  "description": "Lake Mary at sunrise. So pretty!"
+}
+
+###
+
+GET http://localhost:8888/api/v1/user/2222

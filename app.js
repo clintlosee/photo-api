@@ -9,7 +9,7 @@ const app = express();
 
 //* Take raw requests and turn them into usable properties on req.body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 //* use our own routes, starting with /api/v1
 app.use('/api/v1', routes);
