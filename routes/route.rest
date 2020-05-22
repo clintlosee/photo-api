@@ -24,9 +24,19 @@ PATCH http://localhost:8888/api/v1/portfolio/update/5ec40c74984f8886836e3222
 Content-Type: application/json
 
 {
-  "description": "Lake Mary at sunrise. So pretty!"
+  "description": "Lake Mary at sunrise. So pretty!!!"
 }
 
 ###
 
 GET http://localhost:8888/api/v1/user/2222
+
+###
+
+POST http://localhost:8888/api/v1/user/new
+Content-Type: application/json
+
+{
+  "email": "clint.losee@gmail.com",
+  "password": "test",
+}

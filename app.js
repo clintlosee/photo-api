@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const errorHandlers = require('./handlers/errorHandlers');
+require('./handlers/passport');
 
 //* Create our Express app
 const app = express();
