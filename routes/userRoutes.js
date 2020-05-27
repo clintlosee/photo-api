@@ -12,8 +12,14 @@ router.get(
   catchErrors(userController.getUser)
 );
 router.get('/me', authController.onlyAuthUser, userController.getCurrentUser);
+router.get(
+  '/user/:id/images',
+  authController.onlyAuthUser,
+  userController.getUserId,
+  userController.getUserAllImages
+);
 router.post('/user/new', catchErrors(userController.createUser));
-router.post('/login', userController.login);
-router.post('/logout', userController.logout);
+// router.post('/login', userController.login);
+// router.post('/logout', userController.logout);
 
 module.exports = router;
