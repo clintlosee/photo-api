@@ -51,6 +51,42 @@ exports.createImage = async (req, res) => {
   }
 };
 
+//* Create one image
+exports.createNewImage = async (req, res) => {
+  const { user } = req;
+  const imageData = req.body;
+
+  if (!imageData.name) {
+    return res.status(422).json({
+      errors: {
+        name: 'Image name is required',
+        message: 'Image name is required',
+      },
+    });
+  }
+  if (!user) {
+    return res.status(422).json({
+      errors: {
+        creator: 'User is required',
+        message: 'User is required',
+      },
+    });
+  }
+
+  const image = new Image({ ...imageData, creator: user });
+
+  try {
+    await image.save((errors, savedImage) => {
+      if (errors) {
+        return res.status(422).json({ message: errors });
+      }
+      return res.status(201).json(savedImage);
+    });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 //* Update one image
 exports.updateImage = async (req, res) => {
   if (req.body.name) {

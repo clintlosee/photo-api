@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const userController = require('../controllers/userController');
+const imageController = require('../controllers/imageController');
 const authController = require('../controllers/authController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -18,6 +19,14 @@ router.get(
   userController.getUserId,
   userController.getUserAllImages
 );
+
+router.post(
+  '/user/:id/image',
+  authController.onlyAuthUser,
+  userController.getUserId,
+  catchErrors(imageController.createNewImage)
+);
+
 router.post('/user/new', catchErrors(userController.createUser));
 // router.post('/login', userController.login);
 // router.post('/logout', userController.logout);

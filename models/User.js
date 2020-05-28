@@ -29,12 +29,7 @@ const userSchema = new Schema(
       maxlength: [32, 'Too long, max is 32 characters'],
       required: 'Password is required',
     },
-    // images: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Image',
-    //   },
-    // ],
+    // images: [{ type: Schema.Types.ObjectId, ref: 'Image' }],
   },
   {
     toJSON: { virtuals: true },
@@ -89,7 +84,7 @@ userSchema.methods.toAuthJSON = function() {
     name: this.name,
     email: this.email,
     gravatar: this.gravatar,
-    images: this.images, // TODO populate images
+    // images: this.images, // TODO populate images
     token: this.generateJWT(),
   };
 };
@@ -115,32 +110,3 @@ userSchema.pre('find', autopopulate);
 userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);
-
-// exports.getMeetups = function(req, res) {
-//   Meetup.find({})
-//     .populate('category')
-//     .populate('joinedPeople')
-//     .exec((errors, meetups) => {
-//       if (errors) {
-//         return res.status(422).send({ errors });
-//       }
-
-//       return res.json(meetups);
-//     });
-// };
-
-// exports.getMeetupById = function(req, res) {
-//   const { id } = req.params;
-
-//   Meetup.findById(id)
-//     .populate('meetupCreator', 'name id avatar')
-//     .populate('category')
-//     .populate({ path: 'joinedPeople', options: { limit: 5, sort: { username: -1 } } })
-//     .exec((errors, meetup) => {
-//       if (errors) {
-//         return res.status(422).send({ errors });
-//       }
-
-//       return res.json(meetup);
-//     });
-// };

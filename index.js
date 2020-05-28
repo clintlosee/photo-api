@@ -12,18 +12,25 @@ if (major < 7 || (major === 7 && minor <= 5)) {
 
 //* Mongoose/MongoDB setup
 mongoose.set('useCreateIndex', true);
-mongoose.connect(
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DATABASE_URL_DEV
-    : process.env.DATABASE_URL,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-const db = mongoose.connection;
-db.on('error', error => console.error(error));
-db.once('open', () => console.log('Connected to DB'));
+mongoose
+  .connect(
+    process.env.NODE_ENV !== 'production'
+      ? process.env.DATABASE_URL_DEV
+      : process.env.DATABASE_URL,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => {
+    console.log('Connected to DB');
+  })
+  .catch(error => {
+    console.error(error);
+  });
+// const db = mongoose.connection;
+// db.on('error', error => console.error(error));
+// db.once('open', () => console.log('Connected to DB'));
 
 const app = require('./app');
 

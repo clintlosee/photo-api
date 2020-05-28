@@ -10,7 +10,7 @@ POST http://localhost:8888/api/v1/image/new
 Content-Type: application/json
 
 {
-  "name": "Lake Mary Morning",
+  "name": "Lake Mary Morning2",
   "description": "Lake Mary at sunrise.  ",
   "creator": "5ecd7a388b82654e79a8b2bb"
 }
